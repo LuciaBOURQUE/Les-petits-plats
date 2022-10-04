@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="scss/style.css" rel="stylesheet" type="text/css" />
+        <link href="scss/normalize.css" rel="stylesheet" type="text/css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Lato:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+        <link href="assets/icons/logo.png" rel="icon" type="image/png">
+        <title>Les petits plats - Accueil</title>
+    </head>
+
+
+    <body>
+        <header aria-label="main navigation">
+            <a href="index.html" title="Les petits plats" aria-label="aller à la page d'accueil">
+                <img class="logo" src="assets/icons/logo.png" alt="logo Les petits plats"/>
+            </a>
+            <h1>Les petits plats</h1>
+        </header>
+
+        <main id="main">
+            <section class="section-search-input" aria-label="moteur de recherche">
+                <label for="search"></label>
+                <input
+                tabindex="0"
+                type="search"
+                class="text-search"
+                id="search"
+                name="search"
+                placeholder="Rechercher une recette"
+                required minlength="3">
+                <svg class="btn-search" tabindex='0' role="button" aria-label="bouton de recherche" width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M23.4167 20.6667H21.9683L21.455 20.1717C23.2517 18.0817 24.3333 15.3683 24.3333 12.4167C24.3333 5.835 18.9983 0.5 12.4167 0.5C5.835 0.5 0.5 5.835 0.5 12.4167C0.5 18.9983 5.835 24.3333 12.4167 24.3333C15.3683 24.3333 18.0817 23.2517 20.1717 21.455L20.6667 21.9683V23.4167L29.8333 32.565L32.565 29.8333L23.4167 20.6667ZM12.4167 20.6667C7.85167 20.6667 4.16667 16.9817 4.16667 12.4167C4.16667 7.85167 7.85167 4.16667 12.4167 4.16667C16.9817 4.16667 20.6667 7.85167 20.6667 12.4167C20.6667 16.9817 16.9817 20.6667 12.4167 20.6667Z" fill="black"/>
+                </svg>
+            </section>
+
+            <section class="section-tags-inputs" aria-label="recherche par tags">
+                <div class="tags-filter"></div>
+
+                
+                <div class="tags-inputs-three">
+                    <div class="tags-input-margin">
+                        <div class="tag-input input-ingredients">
+                            <label for="ingredient"></label>
+                            <input
+                            type="text"
+                            class="text-tag develop"
+                            id="ingredients"
+                            name="ingredient"
+                            placeholder="Ingrédients"
+                            required minlength="3">
+                            <svg class="btn-dropdown" dropdown="ingredients" tabindex="0" width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z" fill="white"/>
+                            </svg>
+                        </div>
+
+                        <div class="ingredients-tab none"></div>
+                    </div>
+
+                    <div class="tags-input-margin">
+                        <div class="tag-input input-appliances">
+                            <label for="appareils"></label>
+                            <input
+                            type="text"
+                            class="text-tag develop"
+                            id="appareils"
+                            name="appareils"
+                            placeholder="Appareils"
+                            required minlength="3">
+                            <svg class="btn-dropdown" dropdown="appareils" tabindex="0" width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z" fill="white"/>
+                            </svg>
+                        </div>
+                        
+                        <div class="appliances-tab none"></div>
+                    </div>
+
+                    <div class="tags-input-margin">
+                        <div class="tag-input input-ustensils">
+                            <label for="ustensiles"></label>
+                            <input
+                            type="text"
+                            class="text-tag develop"
+                            id="ustensiles"
+                            name="ustensiles"
+                            placeholder="Ustensiles"
+                            required minlength="3">
+                            <svg class="btn-dropdown" dropdown="ustensils" tabindex="0" width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z" fill="white"/>
+                            </svg>
+                        </div>
+
+                        <div class="ustensils-tab none"></div>
+                    </div>
+                </div>
+            </section>
+            
+            <!--Injection code JavaScript-->
+            <section class="section-grid-cards" aria-label="grille des cartes de recettes">
+            </section>
+        </main>
+
+        <script src="scripts/recipes.js"></script>
+        <script src="scripts/factories/Factorycardrecipe.js"></script>
+        <script src="scripts/index.js"></script>
+        <script src="scripts/utils/mainSearchBar.js"></script>
+        <script src="scripts/utils/dropdownSearchSelection.js"></script>
+        <script src="scripts/utils/tags.js"></script>
+    </body>

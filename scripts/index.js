@@ -1,0 +1,15 @@
+/* Récupération des données JS dans le fichier 'recipes.js' */
+
+/* Fonction affichage des cartes de recettes
+   avec appel de la Factory "Card Recipe" */
+function displayCardRecipe(arrayInputRecipe) {
+    const cardRecipeSection = document.querySelector(".section-grid-cards");
+    cardRecipeSection.innerHTML= "";
+
+    arrayInputRecipe.forEach((recipe) => {
+        const cardRecipeModel = factoryCardRecipe(recipe);
+        const recipeCardDOM = cardRecipeModel.getCardRecipeDOM();
+        cardRecipeSection.appendChild(recipeCardDOM);
+    })
+}
+displayCardRecipe(recipes);

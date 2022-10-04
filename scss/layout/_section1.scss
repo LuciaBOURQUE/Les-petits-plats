@@ -1,0 +1,31 @@
+/* SECTION 1 - Barre de recherche */
+
+.section-search-input {
+    background-color: $colorsearchinput;
+    @include inputag;
+    padding: 5px 20px 5px 4px;
+    label {
+        display:none;
+    }
+    .text-search {
+        background-color: transparent;
+        border: none;
+        border-radius: 5px;
+        padding: 20px;
+        width: 90%;
+        &[type="search"] {
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            color: $colorblack;
+        }
+    }
+}
+
+.text-search::placeholder {
+    opacity: 0.5;
+}
+
+.text-search:focus {
+    outline: none !important;
+}
