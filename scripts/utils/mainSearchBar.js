@@ -3,6 +3,7 @@
 
 
 /* Tableau des recettes triées par l'input global */
+/*
 let BtnMainSearch = document.querySelector('.btn-search');
 BtnMainSearch.addEventListener('click', () => {
     const arrayInputRecipe = [];
@@ -44,4 +45,4 @@ BtnMainSearch.addEventListener('click', () => {
         }
     })
     displayCardRecipe(arrayInputRecipe);
-})
+})*/

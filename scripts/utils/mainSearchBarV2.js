@@ -1,47 +1,103 @@
 /* Fonctionnalité de recherche : performant et rapide
-   2e VERSION - Méthode Objet Array */
+   2e VERSION - Méthode boucle native (FOR) */
 
 
 /* Tableau des recettes triées par l'input global */
 let BtnMainSearch = document.querySelector('.btn-search');
 BtnMainSearch.addEventListener('click', () => {
+    const start = performance.now()
+
     const arrayInputRecipe = [];
     let researchMonitor = document.getElementById('search').value;
 
-    recipes.forEach((recipe) => {
-        let doublon = false;  
-        
-        let names = recipe.name;    
+    for (let i = 0; i<recipes.length; i++){
+        let doublon = false;
+
+        let names = recipes[i].name;
         if (names.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false ) {
-            arrayInputRecipe.push(recipe);
+            arrayInputRecipe.push(recipes[i]);
             doublon = true;
         }
 
-        let ingredients = recipe.ingredients;
-        ingredients.forEach((ingredient) => {
-            let ingredientsTabList = ingredient.ingredient;
+        let ingredients = recipes[i].ingredients;
+        for (let i = 0; i<ingredients.length; i++) {
+            let ingredientsTabList = ingredients[i].ingredient;
             if (ingredientsTabList.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false) {
-                arrayInputRecipe.push(recipe);
+                arrayInputRecipe.push(recipes[i]);
                 doublon = true;
             }
-        })
+        }
 
-        let appliances = recipe.appliance;
+        let appliances = recipes[i].appliance;
         if (appliances.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false ) {
-            arrayInputRecipe.push(recipe);
+            arrayInputRecipe.push(recipes[i]);
             doublon = true;
         }
 
-        let ustensils = recipe.ustensils;
-        if (doublon == false ) {
-            ustensils.forEach((ustensil) => {
-                let ustensilsTabList = ustensil;
-                if (ustensilsTabList.toLowerCase().includes(researchMonitor.toLowerCase()) ) {
-                    arrayInputRecipe.push(recipe);
+        let ustensils = recipes[i].ustensils;
+        for (let i = 0; i<ustensils.length; i++) {
+            let ustensilsTabList = ustensils[i];
+            if (ustensilsTabList.toLowerCase().includes(researchMonitor.toLowerCase()) ) {
+                arrayInputRecipe.push(recipes[i]);
+                doublon = true;
+            }
+        }
+
+    };
+    displayCardRecipe(arrayInputRecipe);
+
+    
+    const end = performance.now()
+    console.log(`Resultat ${end - start} milliseconds`);
+});
+
+
+/*
+let BtnMainSearch = document.querySelector('.btn-search');
+BtnMainSearch.addEventListener('click', () => {
+    console.time(doSomething);
+
+    function doSomething () {
+        const arrayInputRecipe = [];
+        let researchMonitor = document.getElementById('search').value;
+    
+        for (let i = 0; i<recipes.length; i++){
+            let doublon = false;
+    
+            let names = recipes[i].name;
+            if (names.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false ) {
+                arrayInputRecipe.push(recipes[i]);
+                doublon = true;
+            }
+    
+            let ingredients = recipes[i].ingredients;
+            for (let i = 0; i<ingredients.length; i++) {
+                let ingredientsTabList = ingredients[i].ingredient;
+                if (ingredientsTabList.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false) {
+                    arrayInputRecipe.push(recipes[i]);
                     doublon = true;
                 }
-            })
-        }
-    })
-    displayCardRecipe(arrayInputRecipe);
-})
+            }
+    
+            let appliances = recipes[i].appliance;
+            if (appliances.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false ) {
+                arrayInputRecipe.push(recipes[i]);
+                doublon = true;
+            }
+    
+            let ustensils = recipes[i].ustensils;
+            for (let i = 0; i<ustensils.length; i++) {
+                let ustensilsTabList = ustensils[i];
+                if (ustensilsTabList.toLowerCase().includes(researchMonitor.toLowerCase()) ) {
+                    arrayInputRecipe.push(recipes[i]);
+                    doublon = true;
+                }
+            }
+    
+        };
+        displayCardRecipe(arrayInputRecipe);
+    }
+    doSomething();
+
+    console.timeEnd(doSomething);
+});*/
