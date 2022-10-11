@@ -67,7 +67,7 @@ allElements.forEach((element) => {
                     }
                 })
 
-                /*
+                
                 // Les appareils
                 let appliances = recipe.appliance;
                 if (appliances.toLowerCase().includes(tag.innerText.toLowerCase()) && doublon == false) {
@@ -82,7 +82,7 @@ allElements.forEach((element) => {
                         arrayInputRecipe.push(recipe);
                         doublon = true;
                     }
-                })*/
+                })
             })
 
         })
