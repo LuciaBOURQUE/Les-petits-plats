@@ -15,15 +15,15 @@ function manageElementsListOnTag (currentsRecipes) {
         const ingredients = recipe.ingredients;
         ingredients.forEach((ingredient) => {
             let ingredientsTabList = ingredient.ingredient;
-            ingredientsTab.push(`<li class="tag-ingredient blabla" categorie="ingredient">${ingredientsTabList}</li>`);
+            ingredientsTab.push(`<li class="tag-ingredient element" categorie="ingredient">${ingredientsTabList.toLowerCase()}</li>`);
         })
 
         const appliances = recipe.appliance;
-        appliancesTab.push(`<li class="tag-appareil blabla" categorie="appareil">${appliances}</li>`);
+        appliancesTab.push(`<li class="tag-appareil element" categorie="appareil">${appliances.toLowerCase()}</li>`);
 
         const ustensils = recipe.ustensils;
         ustensils.forEach((ustensil) => {
-            ustensilsTab.push(`<li class="tag-ustensil blabla" categorie="ustensile">${ustensil}</li>`);
+            ustensilsTab.push(`<li class="tag-ustensil element" categorie="ustensile">${ustensil.toLowerCase()}</li>`);
         })
     })
 
