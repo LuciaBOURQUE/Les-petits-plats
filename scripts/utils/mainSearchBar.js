@@ -45,3 +45,6 @@ BtnMainSearch.addEventListener('click', () => {
     })
     displayCardRecipe(arrayInputRecipe);
 })
+
+
+/* 2e VERSION - Méthode Objet Array */
