@@ -1,5 +1,5 @@
 /* Fonctionnalité de recherche : performant et rapide
-   1er VERSION - Méthode Objet Array */
+   2e VERSION - Méthode Objet Array */
 
 
 /* Tableau des recettes triées par l'input global */
