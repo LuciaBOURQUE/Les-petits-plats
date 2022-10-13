@@ -1,5 +1,5 @@
 /* Fonctionnalité de recherche : performant et rapide
-   2e VERSION - Méthode boucle native (FOR) */
+   1er VERSION - Méthode boucle native (FOR) */
 
 
 /* Tableau des recettes triées par l'input global */
