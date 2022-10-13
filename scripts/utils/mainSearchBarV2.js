@@ -1,21 +1,20 @@
 /* Fonctionnalité de recherche : performant et rapide
-   2e VERSION - Méthode Objet Array */
+   2e VERSION - Méthode Objet Array (FOREACH) */
 
 
 /* Tableau des recettes triées par l'input global */
-
 let BtnMainSearch = document.querySelector('.btn-search');
 BtnMainSearch.addEventListener('click', () => {
     const start = performance.now()
 
     const arrayInputRecipe = [];
-    let researchMonitor = document.getElementById('search').value;
+    let researchMonitorValue = document.getElementById('search').value;
 
     recipes.forEach((recipe) => {
         let doublon = false;  
         
         let names = recipe.name;    
-        if (names.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false ) {
+        if (names.toLowerCase().includes(researchMonitorValue.toLowerCase()) && doublon == false ) {
             arrayInputRecipe.push(recipe);
             doublon = true;
         }
@@ -23,14 +22,14 @@ BtnMainSearch.addEventListener('click', () => {
         let ingredients = recipe.ingredients;
         ingredients.forEach((ingredient) => {
             let ingredientsTabList = ingredient.ingredient;
-            if (ingredientsTabList.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false) {
+            if (ingredientsTabList.toLowerCase().includes(researchMonitorValue.toLowerCase()) && doublon == false) {
                 arrayInputRecipe.push(recipe);
                 doublon = true;
             }
         })
 
         let appliances = recipe.appliance;
-        if (appliances.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false ) {
+        if (appliances.toLowerCase().includes(researchMonitorValue.toLowerCase()) && doublon == false ) {
             arrayInputRecipe.push(recipe);
             doublon = true;
         }
@@ -39,7 +38,7 @@ BtnMainSearch.addEventListener('click', () => {
         if (doublon == false ) {
             ustensils.forEach((ustensil) => {
                 let ustensilsTabList = ustensil;
-                if (ustensilsTabList.toLowerCase().includes(researchMonitor.toLowerCase()) ) {
+                if (ustensilsTabList.toLowerCase().includes(researchMonitorValue.toLowerCase()) ) {
                     arrayInputRecipe.push(recipe);
                     doublon = true;
                 }
@@ -59,13 +58,13 @@ BtnMainSearch.addEventListener('click', () => {
 
     function doSomething (){   
         const arrayInputRecipe = [];
-        let researchMonitor = document.getElementById('search').value;
+        let researchMonitorValue = document.getElementById('search').value;
 
         recipes.forEach((recipe) => {
             let doublon = false;  
             
             let names = recipe.name;    
-            if (names.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false ) {
+            if (names.toLowerCase().includes(researchMonitorValue.toLowerCase()) && doublon == false ) {
                 arrayInputRecipe.push(recipe);
                 doublon = true;
             }
@@ -73,14 +72,14 @@ BtnMainSearch.addEventListener('click', () => {
             let ingredients = recipe.ingredients;
             ingredients.forEach((ingredient) => {
                 let ingredientsTabList = ingredient.ingredient;
-                if (ingredientsTabList.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false) {
+                if (ingredientsTabList.toLowerCase().includes(researchMonitorValue.toLowerCase()) && doublon == false) {
                     arrayInputRecipe.push(recipe);
                     doublon = true;
                 }
             })
 
             let appliances = recipe.appliance;
-            if (appliances.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false ) {
+            if (appliances.toLowerCase().includes(researchMonitorValue.toLowerCase()) && doublon == false ) {
                 arrayInputRecipe.push(recipe);
                 doublon = true;
             }
@@ -89,7 +88,7 @@ BtnMainSearch.addEventListener('click', () => {
             if (doublon == false ) {
                 ustensils.forEach((ustensil) => {
                     let ustensilsTabList = ustensil;
-                    if (ustensilsTabList.toLowerCase().includes(researchMonitor.toLowerCase()) ) {
+                    if (ustensilsTabList.toLowerCase().includes(researchMonitorValue.toLowerCase()) ) {
                         arrayInputRecipe.push(recipe);
                         doublon = true;
                     }
