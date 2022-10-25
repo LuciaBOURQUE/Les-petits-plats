@@ -1,72 +1,14 @@
-/*1er VERSION - Méthode boucle native (FOR) */
-function eventMainSearch () {
-
-}
-
-let BtnMainSearch = document.querySelector('.btn-search');
-BtnMainSearch.addEventListener('click', () => {
-    const start = performance.now()
-
+/* 1er VERSION - Méthode boucle native (FOR) */
+function eventMainSearch() {
     const arrayInputRecipe = [];
     let researchMonitor = document.getElementById('search').value;
 
-    for (let i = 0; i<recipes.length; i++){
-        let doublon = false;
+    if(researchMonitor.length <= 3 || researchMonitor.length == ""){
+        document.querySelector(".error-message-letter").style.display = "block";
+        return false;
+    } else {
+        document.querySelector(".error-message-letter").style.display = "none";
 
-        let names = recipes[i].name;
-        if (names.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false ) {
-            arrayInputRecipe.push(recipes[i]);
-            doublon = true;
-        }
-
-        let ingredients = recipes[i].ingredients;
-        for (let i = 0; i<ingredients.length; i++) {
-            let ingredientsTabList = ingredients[i].ingredient;
-            if (ingredientsTabList.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false) {
-                arrayInputRecipe.push(recipes[i]);
-                doublon = true;
-            }
-        }
-
-        let appliances = recipes[i].appliance;
-        if (appliances.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false ) {
-            arrayInputRecipe.push(recipes[i]);
-            doublon = true;
-        }
-
-        let ustensils = recipes[i].ustensils;
-        for (let i = 0; i<ustensils.length; i++) {
-            let ustensilsTabList = ustensils[i];
-            if (ustensilsTabList.toLowerCase().includes(researchMonitor.toLowerCase()) ) {
-                arrayInputRecipe.push(recipes[i]);
-                doublon = true;
-            }
-        }
-
-    };
-    displayCardRecipe(arrayInputRecipe);
-
-    
-    const end = performance.now()
-    console.log(`Resultat ${end - start} milliseconds`);
-});
-
-BtnMainSearch.addEventListener('keydown', (e) => {
-    if (e.key === "Enter"){
-        eventMainSearch()
-    }
-});
-
-
-/*
-let BtnMainSearch = document.querySelector('.btn-search');
-BtnMainSearch.addEventListener('click', () => {
-    console.time(doSomething);
-
-    function doSomething () {
-        const arrayInputRecipe = [];
-        let researchMonitor = document.getElementById('search').value;
-    
         for (let i = 0; i<recipes.length; i++){
             let doublon = false;
     
@@ -77,7 +19,7 @@ BtnMainSearch.addEventListener('click', () => {
             }
     
             let ingredients = recipes[i].ingredients;
-            for (let i = 0; i<ingredients.length; i++) {
+            for(let i = 0; i<ingredients.length; i++) {
                 let ingredientsTabList = ingredients[i].ingredient;
                 if (ingredientsTabList.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false) {
                     arrayInputRecipe.push(recipes[i]);
@@ -94,7 +36,7 @@ BtnMainSearch.addEventListener('click', () => {
             let ustensils = recipes[i].ustensils;
             for (let i = 0; i<ustensils.length; i++) {
                 let ustensilsTabList = ustensils[i];
-                if (ustensilsTabList.toLowerCase().includes(researchMonitor.toLowerCase()) ) {
+                if (ustensilsTabList.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false ) {
                     arrayInputRecipe.push(recipes[i]);
                     doublon = true;
                 }
@@ -102,8 +44,21 @@ BtnMainSearch.addEventListener('click', () => {
     
         };
         displayCardRecipe(arrayInputRecipe);
+        return true;
     }
-    doSomething();
+}
 
-    console.timeEnd(doSomething);
-});*/
+let BtnMainSearch = document.querySelector('.btn-search');
+BtnMainSearch.addEventListener('click', () => {
+    console.time(eventMainSearch);
+
+    eventMainSearch();
+
+    console.timeEnd(eventMainSearch);
+});
+
+BtnMainSearch.addEventListener('keydown', (e) => {
+    if (e.key === "Enter"){
+        eventMainSearch();
+    }
+});
