@@ -109,6 +109,13 @@ header h1 {
   outline: none !important;
 }
 
+.error-message {
+  color: #ED6454;
+  display: block;
+  opacity: 0;
+  transition: 0.3s;
+}
+
 /* SECTION 2 - Les filtres */
 .section-tags-inputs {
   margin-top: 3%;

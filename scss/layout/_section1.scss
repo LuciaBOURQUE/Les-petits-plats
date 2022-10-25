@@ -29,3 +29,10 @@
 .text-search:focus {
     outline: none !important;
 }
+
+.error-message {
+    color: #ED6454;
+    display: block;
+    opacity: 0;
+    transition: 0.3s;
+}
