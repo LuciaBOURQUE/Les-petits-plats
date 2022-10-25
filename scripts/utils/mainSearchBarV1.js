@@ -1,8 +1,8 @@
-/* Fonctionnalité de recherche : performant et rapide
-   1er VERSION - Méthode boucle native (FOR) */
+/*1er VERSION - Méthode boucle native (FOR) */
+function eventMainSearch () {
 
+}
 
-/* Tableau des recettes triées par l'input global */
 let BtnMainSearch = document.querySelector('.btn-search');
 BtnMainSearch.addEventListener('click', () => {
     const start = performance.now()
@@ -49,6 +49,12 @@ BtnMainSearch.addEventListener('click', () => {
     
     const end = performance.now()
     console.log(`Resultat ${end - start} milliseconds`);
+});
+
+BtnMainSearch.addEventListener('keydown', (e) => {
+    if (e.key === "Enter"){
+        eventMainSearch()
+    }
 });
 
 
