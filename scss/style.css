@@ -104,6 +104,12 @@ header h1 {
   outline: none !important;
 }
 
+.error-message-letter, .error-message-recipe {
+  color: #D04F4F;
+  display: none;
+  transition: 0.3s;
+}
+
 /* SECTION 2 - Les filtres */
 .section-tags-inputs {
   margin-top: 3%;
