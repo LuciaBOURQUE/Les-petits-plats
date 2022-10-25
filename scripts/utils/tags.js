@@ -2,8 +2,8 @@
 
 // 1) Création des tags et suppression des tags
 const tagsFilter = document.querySelector('.tags-filter');
-const allElements = document.querySelectorAll('.element');
-function createTheTag (element) {
+const allElementsOnTags = document.querySelectorAll('.element');
+function creatTag (element) {
     const tag = document.createElement('div');
     tag.classList.add('tags');
     let tagHTML = ` 
@@ -14,7 +14,6 @@ function createTheTag (element) {
     tag.innerHTML = tagHTML;
     tagsFilter.appendChild(tag);
     element.style.display = 'none';
-
 
     if (element.getAttribute('categorie') == 'ingredient') {
         tag.setAttribute('categorie', 'ingredient');
@@ -28,113 +27,121 @@ function createTheTag (element) {
         tag.setAttribute('categorie', 'ustensile');
         tag.style.background = "#ED6454";
     }
-
-    const close = document.querySelectorAll('.close-tag');
-    close.forEach((btn) =>{
-        btn.addEventListener('click', (e)=> {
-            element.style.display = 'block';
-            e.target.closest('div').remove();
-        })
-    })
 }
 
-// 2) Trier les recettes on fonction des tags
+// 2) Récupération des éléments nécessaire
 const allRecipes = recipes;
-
 const allIngredients = document.querySelectorAll('.tag-ingredient');
 const allAppareils = document.querySelectorAll('.tag-appareil');
 const allUstensils = document.querySelectorAll('.tag-ustensil');
 
 
-allElements.forEach((element) => {
+// 3) Affichage des recettes
+allElementsOnTags.forEach((element) => {
     element.addEventListener('click', ()=> {
         const arrayInputRecipe = [];
-        createTheTag(element);
+        creatTag(element);
         
-        let allTags = document.querySelectorAll(".tags");
-        allRecipes.forEach((recipe) => {
-            
-            allTags.forEach((tag) => {
-                let doublon = false;
-
-                // Les ingrédients
-                let ingredients = recipe.ingredients;
-                ingredients.forEach((ingredient) => {
-                    let ingredientsTabList = ingredient.ingredient;
-                    if (ingredientsTabList.toLowerCase().includes(tag.innerText.toLowerCase()) && doublon == false) {
-                        arrayInputRecipe.push(recipe);
-                        doublon = true;
+        function displayRecipeOnFilter () {
+            let allTags = document.querySelectorAll(".tags");
+            allRecipes.forEach((recipe) => {
+                let tagIsOnRecipe = true;
+    
+                allTags.forEach((tag) => {
+                    // Les ingrédients
+                    if (tag.getAttribute('categorie') == 'ingredient') {
+                        let ingredients = recipe.ingredients;
+                        tagIsOnRecipe = false;
+                        ingredients.forEach((ingredient) => {
+                            let ingredientsTabList = ingredient.ingredient;
+                            if ( ingredientsTabList.toLowerCase().includes(tag.innerText.toLowerCase())) {
+                                tagIsOnRecipe = true;
+                            }
+                        })
+                    }
+                    
+                    // Les appareils
+                    if (tag.getAttribute('categorie') == 'appareil') {
+                        let appliances = recipe.appliance;
+                        if ( !tag.innerText.toLowerCase().includes(appliances.toLowerCase()) ) {
+                            tagIsOnRecipe = false;
+                        }
+                    }
+    
+                    // Les ustensiles
+                    if (tag.getAttribute('categorie') == 'ustensile') {
+                        let ustensils = recipe.ustensils;
+                        tagIsOnRecipe = false;
+                        ustensils.forEach((ustensil) => {
+                            if ( ustensil.toLowerCase().includes(tag.innerText.toLowerCase()) ) {
+                            tagIsOnRecipe = true;
+                            }
+                        })
                     }
                 })
-
-                
-                // Les appareils
-                let appliances = recipe.appliance;
-                if (appliances.toLowerCase().includes(tag.innerText.toLowerCase()) && doublon == false) {
+    
+                if (tagIsOnRecipe == true) {
                     arrayInputRecipe.push(recipe);
-                    doublon = true;
+                    console.log(recipe);
                 }
+    
+            })    
+        }
+        displayRecipeOnFilter();
 
-                // Les ustensiles
-                let ustensils = recipe.ustensils;
-                ustensils.forEach((ustensil) => {
-                    if (ustensil.toLowerCase().includes(tag.innerText.toLowerCase()) && doublon == false) {
-                        arrayInputRecipe.push(recipe);
-                        doublon = true;
-                    }
-                })
+        const close = document.querySelectorAll('.close-tag');
+        close.forEach((btn) =>{
+            btn.addEventListener('click', (e)=> {
+                element.style.display = 'block';
+                e.target.closest('div').remove();
+
+                displayRecipeOnFilter();
             })
-
         })
-        
-        
-        function restFilterElements () {
+        displayCardRecipe(arrayInputRecipe);
+
+
+        function remainFilterElements () {
             // Les ingrédients
-            allIngredients.forEach((testIngredients) => {
-                arrayInputRecipe.forEach((recipeRest) => {
-                    let ingredients = recipeRest.ingredients;
+            allIngredients.forEach((ingredientOnList) => {
+                ingredientOnList.style.display = "none";
+                arrayInputRecipe.forEach((remainRecipes) => {
+                    let ingredients = remainRecipes.ingredients;
                     ingredients.forEach((ingredient) => {
-                        let test = ingredient.ingredient;
-                        if (test.toLowerCase() == (testIngredients.innerText.toLowerCase()) ) {
-                            testIngredients.setAttribute("display", "yes");
+                        let tagIsOnRecipe = ingredient.ingredient;
+                        if (tagIsOnRecipe.toLowerCase().includes(ingredientOnList.innerText.toLowerCase()) ) {
+                            ingredientOnList.style.display = "block";
                         }
                     })
                 })
-                if (!testIngredients.getAttribute('display')) {
-                    testIngredients.remove();
-                }
             })
-
             
             // Les appareils
-            allAppareils.forEach((testAppareil) => {
-                arrayInputRecipe.forEach((recipeRest) => {
-                    let appliances = recipeRest.appliance;
-                    if (appliances.toLowerCase().includes(testAppareil.innerText.toLowerCase()) ) {
-                        testAppareil.setAttribute("display", "yes");
+            allAppareils.forEach((applianceOnList) => {
+                applianceOnList.style.display = "none";
+                arrayInputRecipe.forEach((remainRecipes) => {
+                    let appliances = remainRecipes.appliance;
+                    if (appliances.toLowerCase().includes(applianceOnList.innerText.toLowerCase()) ) {
+                        applianceOnList.style.display = "block";
                     }
                 })
-                if (!testAppareil.getAttribute('display')) {
-                    testAppareil.remove();
-                }
             })
             
             //Les ustensils
-            allUstensils.forEach((testUstensil) => {
-                arrayInputRecipe.forEach((recipeRest) => {
-                    let ustensils = recipeRest.ustensils;
+            allUstensils.forEach((ustensilOnList) => {
+                ustensilOnList.style.display = "none";
+                arrayInputRecipe.forEach((remainRecipes) => {
+                    let ustensils = remainRecipes.ustensils;
                     ustensils.forEach((ustensil) => {
-                        if (ustensil.toLowerCase().includes(testUstensil.innerText.toLowerCase()) ) {
-                            testUstensil.setAttribute("display", "yes");
+                        if (ustensil.toLowerCase().includes(ustensilOnList.innerText.toLowerCase()) ) {
+                            ustensilOnList.style.display = "block";
                         }
                     })
                 })
-                if (!testUstensil.getAttribute('display')) {
-                    testUstensil.remove();
-                }
             })
+            
         }
-        restFilterElements()
-        displayCardRecipe(arrayInputRecipe);
+        remainFilterElements()
+
     })
 })

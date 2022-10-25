@@ -10,6 +10,6 @@ function displayCardRecipe(arrayInputRecipe) {
         const cardRecipeModel = factoryCardRecipe(recipe);
         const recipeCardDOM = cardRecipeModel.getCardRecipeDOM();
         cardRecipeSection.appendChild(recipeCardDOM);
-    })
+    });
 }
 displayCardRecipe(recipes);

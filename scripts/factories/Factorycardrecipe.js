@@ -1,8 +1,8 @@
 // FACTORY FUNCTION - CARD RECIPES
 
 function factoryCardRecipe (data) {
-    const { id, name, time, description } = data
-    const picture = `assets/pictures/Coconut_chicken_Reunion.jpeg`
+    const { id, name, time, description } = data;
+    const picture = `assets/pictures/Coconut_chicken_Reunion.jpeg`;
 
     // Create a card recipe
     function getCardRecipeDOM() {
@@ -27,7 +27,7 @@ function factoryCardRecipe (data) {
                             </div>
                             
                             <div class="recipe-ingredients-text">
-                            <div class="ingredients-tab-item">`
+                            <div class="ingredients-tab-item">`;
         
 
         data.ingredients.forEach(ingredient => {
@@ -36,14 +36,14 @@ function factoryCardRecipe (data) {
             if (quantityName === `${undefined}`){
                 quantityName = "";
             }
-            cardHTML += `<p class="ingredient"><span class="ingredient-bold">${ingredientName}:</span> ${quantityName}</p>`
+            cardHTML += `<p class="ingredient"><span class="ingredient-bold">${ingredientName}:</span> ${quantityName}</p>`;
         });
 
         cardHTML += `      </div>  
                                 <p class="recipe-text">${description}</p>
                             </div>
-                        </div> `
-        card.innerHTML= cardHTML
+                        </div> `;
+        card.innerHTML= cardHTML;
 
         return (card);
     }
@@ -52,5 +52,5 @@ function factoryCardRecipe (data) {
         id,
         picture,
         getCardRecipeDOM
-    }
+    };
 }
