@@ -40,7 +40,6 @@ function createTheTag (element) {
 
 // 2) Trier les recettes on fonction des tags
 const allRecipes = recipes;
-
 const allIngredients = document.querySelectorAll('.tag-ingredient');
 const allAppareils = document.querySelectorAll('.tag-appareil');
 const allUstensils = document.querySelectorAll('.tag-ustensil');
