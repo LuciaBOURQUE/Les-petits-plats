@@ -37,12 +37,10 @@
                 </svg>
             </section>
             <p class="error-message-letter">Veuillez entrer 3 caractères ou plus</p>
-            <p class="error-message-recipe">Pas de recette associée, faites une nouvelle recherche...</p>
 
             <section class="section-tags-inputs" aria-label="recherche par tags">
                 <div class="tags-filter"></div>
 
-                
                 <div class="tags-inputs-three">
                     <div class="tags-input-margin">
                         <div class="tag-input input-ingredients">
@@ -54,7 +52,7 @@
                             name="ingredient"
                             placeholder="Ingrédients"
                             required minlength="3">
-                            <svg class="btn-dropdown" dropdown="ingredients" tabindex="0" width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="btn-dropdown ingredients-dropdown" tabindex="0" width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z" fill="white"/>
                             </svg>
                         </div>
@@ -72,7 +70,7 @@
                             name="appareils"
                             placeholder="Appareils"
                             required minlength="3">
-                            <svg class="btn-dropdown" dropdown="appareils" tabindex="0" width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="btn-dropdown appareils-dropdown" tabindex="0" width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z" fill="white"/>
                             </svg>
                         </div>
@@ -90,7 +88,7 @@
                             name="ustensiles"
                             placeholder="Ustensiles"
                             required minlength="3">
-                            <svg class="btn-dropdown" dropdown="ustensils" tabindex="0" width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="btn-dropdown ustensils-dropdown" tabindex="0" width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z" fill="white"/>
                             </svg>
                         </div>
@@ -98,6 +96,7 @@
                         <div class="ustensils-tab none"></div>
                     </div>
                 </div>
+                <p class="error-message-recipe">Pas de recette associée, faites une nouvelle recherche...</p>
             </section>
             
             <!--Injection code JavaScript-->

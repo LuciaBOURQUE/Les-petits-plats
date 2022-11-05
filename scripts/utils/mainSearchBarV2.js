@@ -3,22 +3,28 @@ function eventMainSearch() {
     const arrayInputRecipe = [];
     let researchMonitorValue = document.getElementById('search').value;
 
-    if (researchMonitorValue.length <= 3 || researchMonitorValue.length == "" ) {
+    if (researchMonitorValue.length < 3 || researchMonitorValue.length == "" ) {
         document.querySelector(".error-message-letter").style.display = "block";
+        document.querySelector(".error-message-recipe").style.display = "";
+        displayCardRecipe(recipes);
         return false;
     } else {
         document.querySelector(".error-message-letter").style.display = "none";
 
         recipes.forEach((recipe) => {
             let doublon = false;
+
+            let description = recipe.description;
+            if (description.toLowerCase().includes(researchMonitorValue.toLowerCase()) && doublon == false) {
+                arrayInputRecipe.push(recipe);
+                doublon = true;
+            } 
         
             let names = recipe.name;    
             if (names.toLowerCase().includes(researchMonitorValue.toLowerCase()) && doublon == false ) {
                 arrayInputRecipe.push(recipe);
                 doublon = true;
-            } /*else {
-                document.querySelector(".error-message-recipe").style.display = "block";
-            }*/
+            }
     
             let ingredients = recipe.ingredients;
             ingredients.forEach((ingredient) => {
@@ -45,6 +51,7 @@ function eventMainSearch() {
                     }
                 });
             }
+
         });
         displayCardRecipe(arrayInputRecipe);
         return true;
@@ -53,11 +60,11 @@ function eventMainSearch() {
 
 let BtnMainSearch = document.querySelector('.btn-search');
 BtnMainSearch.addEventListener('click', () => {
-    console.time(eventMainSearch);
+    //console.time(eventMainSearch);
 
     eventMainSearch();
 
-    console.timeEnd(eventMainSearch);
+    //console.timeEnd(eventMainSearch);
 });
 
 BtnMainSearch.addEventListener('keydown', (e) => {
