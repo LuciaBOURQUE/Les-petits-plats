@@ -3,7 +3,7 @@ function eventMainSearch() {
     const arrayInputRecipe = [];
     let researchMonitor = document.getElementById('search').value;
 
-    if(researchMonitor.length <= 3 || researchMonitor.length == ""){
+    if(researchMonitor.length < 3 || researchMonitor.length == ""){
         document.querySelector(".error-message-letter").style.display = "block";
         document.querySelector(".error-message-recipe").style.display = "";
         displayCardRecipe(recipes);
