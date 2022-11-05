@@ -66,6 +66,7 @@ const allUstensils = document.querySelectorAll('.tag-ustensil');
 allElementsOnTags.forEach((element) => {
     element.addEventListener('click', ()=> {
         document.querySelector(".error-message-letter").style.display = "none";
+        document.querySelector(".error-message-recipe").style.display = "none";
         let arrayInputRecipe = [];
         creatTag(element);
 
