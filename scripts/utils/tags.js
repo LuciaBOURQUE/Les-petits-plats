@@ -65,7 +65,8 @@ const allUstensils = document.querySelectorAll('.tag-ustensil');
 // 3) Affichage des recettes
 allElementsOnTags.forEach((element) => {
     element.addEventListener('click', ()=> {
-        //document.querySelector(".error-message-letter").style.display = "none";
+        document.querySelector(".error-message-letter").style.display = "none";
+        document.querySelector(".error-message-recipe").style.display = "none";
         let arrayInputRecipe = [];
         creatTag(element);
 
