@@ -1,9 +1,8 @@
 /* Dynamique au niveau des Tags" */
-
 // 1) Création des tags et suppression des tags
 const tagsFilter = document.querySelector('.tags-filter');
-const allElements = document.querySelectorAll('.element');
-function createTheTag (element) {
+const allElementsOnTags = document.querySelectorAll('.element');
+function creatTag (element) {
     const tag = document.createElement('div');
     tag.classList.add('tags');
     let tagHTML = ` 
@@ -13,127 +12,175 @@ function createTheTag (element) {
             </svg> `
     tag.innerHTML = tagHTML;
     tagsFilter.appendChild(tag);
-    element.style.display = 'none';
 
+    element.style.display = 'none';
 
     if (element.getAttribute('categorie') == 'ingredient') {
         tag.setAttribute('categorie', 'ingredient');
         tag.style.background = "#3282F7";
+
+        const modalbg = document.querySelector(".ingredients-tab");
+        const ingredientPlaceholder = document.getElementsByName("ingredient");
+        if(modalbg.classList.contains('none')){
+            modalbg.classList.remove('none');
+        } else {
+            modalbg.classList.add('none');
+            ingredientPlaceholder[0].placeholder = "Ingrédients";
+        }
     }
     if (element.getAttribute('categorie') == 'appareil') {
         tag.setAttribute('categorie', 'appareil');
         tag.style.background = "#68D9A4";
+
+        const modalbg = document.querySelector(".appliances-tab");
+        const appareilsPlaceholder = document.getElementsByName("appareils");
+        if(modalbg.classList.contains('none')){
+            modalbg.classList.remove('none');
+        } else {
+            modalbg.classList.add('none');
+            appareilsPlaceholder[0].placeholder = "Appareils";
+        }
     }
     if (element.getAttribute('categorie') == 'ustensile') {
         tag.setAttribute('categorie', 'ustensile');
         tag.style.background = "#ED6454";
+
+        const modalbg = document.querySelector(".ustensils-tab");
+        const ustensilsPlaceholder = document.getElementsByName("ustensiles");
+        if(modalbg.classList.contains('none')){
+            modalbg.classList.remove('none');
+        } else {
+            modalbg.classList.add('none');
+            ustensilsPlaceholder[0].placeholder = "Ustensils";
+        }
     }
 
-    const close = document.querySelectorAll('.close-tag');
-    close.forEach((btn) =>{
-        btn.addEventListener('click', (e)=> {
-            element.style.display = 'block';
-            e.target.closest('div').remove();
-        })
-    })
 }
 
-// 2) Trier les recettes on fonction des tags
-const allRecipes = recipes;
+// 2) Récupération des éléments nécessaire
 const allIngredients = document.querySelectorAll('.tag-ingredient');
 const allAppareils = document.querySelectorAll('.tag-appareil');
 const allUstensils = document.querySelectorAll('.tag-ustensil');
 
-
-allElements.forEach((element) => {
+// 3) Affichage des recettes
+allElementsOnTags.forEach((element) => {
     element.addEventListener('click', ()=> {
-        const arrayInputRecipe = [];
-        createTheTag(element);
-        
-        let allTags = document.querySelectorAll(".tags");
-        allRecipes.forEach((recipe) => {
-            
-            allTags.forEach((tag) => {
-                let doublon = false;
+        document.querySelector(".error-message-letter").style.display = "none";
+        let arrayInputRecipe = [];
+        creatTag(element);
 
-                // Les ingrédients
-                let ingredients = recipe.ingredients;
-                ingredients.forEach((ingredient) => {
-                    let ingredientsTabList = ingredient.ingredient;
-                    if (ingredientsTabList.toLowerCase().includes(tag.innerText.toLowerCase()) && doublon == false) {
-                        arrayInputRecipe.push(recipe);
-                        doublon = true;
+        // Affichage des recettes en fonction de la liste des tags cliké (+ éviter les doublons)
+        function displayRecipeOnFilter () {
+            document.getElementById('search').value = "";
+            
+            let allTags = document.querySelectorAll(".tags");
+            recipes.forEach((recipe) => {
+                let tagIsOnRecipe = true;
+    
+                allTags.forEach((tag) => {
+                    if (tagIsOnRecipe == true) {
+                        // Les ingrédients
+                        if (tag.getAttribute('categorie') == 'ingredient') {
+                            let ingredients = recipe.ingredients;
+                            tagIsOnRecipe = false;
+                            ingredients.forEach((ingredient) => {
+                                let ingredientsTabList = ingredient.ingredient;
+                                if ( ingredientsTabList.toLowerCase() == (tag.innerText.toLowerCase())) {
+                                    tagIsOnRecipe = true;
+                                }
+                            })
+                        }
+
+                        
+                        // Les appareils
+                        if (tag.getAttribute('categorie') == 'appareil') {
+                            let appliances = recipe.appliance;
+                            if ( !tag.innerText.toLowerCase().includes(appliances.toLowerCase()) ) {
+                                tagIsOnRecipe = false;
+                            }
+                        }
+        
+                        // Les ustensiles
+                        if (tag.getAttribute('categorie') == 'ustensile') {
+                            let ustensils = recipe.ustensils;
+                            tagIsOnRecipe = false;
+                            ustensils.forEach((ustensil) => {
+                                if ( ustensil.toLowerCase() == (tag.innerText.toLowerCase()) ) {
+                                tagIsOnRecipe = true;
+                                }
+                            })
+                        }
                     }
                 })
-
-                
-                // Les appareils
-                let appliances = recipe.appliance;
-                if (appliances.toLowerCase().includes(tag.innerText.toLowerCase()) && doublon == false) {
+    
+                if (tagIsOnRecipe == true) {
                     arrayInputRecipe.push(recipe);
-                    doublon = true;
+                    console.log(recipe);
                 }
 
-                // Les ustensiles
-                let ustensils = recipe.ustensils;
-                ustensils.forEach((ustensil) => {
-                    if (ustensil.toLowerCase().includes(tag.innerText.toLowerCase()) && doublon == false) {
-                        arrayInputRecipe.push(recipe);
-                        doublon = true;
-                    }
-                })
             })
+            displayCardRecipe(arrayInputRecipe);
+        }
+        displayRecipeOnFilter();
 
-        })
-        
-        
-        function restFilterElements () {
+
+        // Filtrage des éléments dans les champs input
+        function remainFilterElements () {
             // Les ingrédients
-            allIngredients.forEach((testIngredients) => {
-                arrayInputRecipe.forEach((recipeRest) => {
-                    let ingredients = recipeRest.ingredients;
+            allIngredients.forEach((ingredientOnList) => {
+                ingredientOnList.style.display = "none";
+                arrayInputRecipe.forEach((remainRecipes) => {
+                    let ingredients = remainRecipes.ingredients;
                     ingredients.forEach((ingredient) => {
-                        let test = ingredient.ingredient;
-                        if (test.toLowerCase() == (testIngredients.innerText.toLowerCase()) ) {
-                            testIngredients.setAttribute("display", "yes");
+                        let tagIsOnRecipe = ingredient.ingredient;
+                        if (tagIsOnRecipe.toLowerCase().includes(ingredientOnList.innerText.toLowerCase()) ) {
+                            ingredientOnList.style.display = "block";
                         }
                     })
-                })
-                if (!testIngredients.getAttribute('display')) {
-                    testIngredients.remove();
-                }
-            })
 
+                })
+            })
             
             // Les appareils
-            allAppareils.forEach((testAppareil) => {
-                arrayInputRecipe.forEach((recipeRest) => {
-                    let appliances = recipeRest.appliance;
-                    if (appliances.toLowerCase().includes(testAppareil.innerText.toLowerCase()) ) {
-                        testAppareil.setAttribute("display", "yes");
+            allAppareils.forEach((applianceOnList) => {
+                applianceOnList.style.display = "none";
+                arrayInputRecipe.forEach((remainRecipes) => {
+                    let appliances = remainRecipes.appliance;
+                    if (appliances.toLowerCase().includes(applianceOnList.innerText.toLowerCase()) ) {
+                        applianceOnList.style.display = "block";
                     }
                 })
-                if (!testAppareil.getAttribute('display')) {
-                    testAppareil.remove();
-                }
             })
             
             //Les ustensils
-            allUstensils.forEach((testUstensil) => {
-                arrayInputRecipe.forEach((recipeRest) => {
-                    let ustensils = recipeRest.ustensils;
+            allUstensils.forEach((ustensilOnList) => {
+                ustensilOnList.style.display = "none";
+                arrayInputRecipe.forEach((remainRecipes) => {
+                    let ustensils = remainRecipes.ustensils;
                     ustensils.forEach((ustensil) => {
-                        if (ustensil.toLowerCase().includes(testUstensil.innerText.toLowerCase()) ) {
-                            testUstensil.setAttribute("display", "yes");
+                        if (ustensil.toLowerCase().includes(ustensilOnList.innerText.toLowerCase()) ) {
+                            ustensilOnList.style.display = "block";
                         }
                     })
                 })
-                if (!testUstensil.getAttribute('display')) {
-                    testUstensil.remove();
-                }
             })
+            
         }
-        restFilterElements()
-        displayCardRecipe(arrayInputRecipe);
+        remainFilterElements()
+
+
+        // Suppression de tags > ré-actulisation des recettes
+        const close = document.querySelectorAll('.close-tag');
+        close.forEach((btn) =>{
+            btn.addEventListener('click', (e)=> {
+                element.style.display = 'block';
+                e.target.closest('div').remove();
+
+                arrayInputRecipe = [];
+                displayRecipeOnFilter();
+                remainFilterElements();
+            })
+        })
+
     })
 })
