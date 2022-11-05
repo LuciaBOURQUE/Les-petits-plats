@@ -5,6 +5,8 @@ function eventMainSearch() {
 
     if(researchMonitor.length <= 3 || researchMonitor.length == ""){
         document.querySelector(".error-message-letter").style.display = "block";
+        document.querySelector(".error-message-recipe").style.display = "";
+        displayCardRecipe(recipes);
         return false;
     } else {
         document.querySelector(".error-message-letter").style.display = "none";
@@ -50,11 +52,11 @@ function eventMainSearch() {
 
 let BtnMainSearch = document.querySelector('.btn-search');
 BtnMainSearch.addEventListener('click', () => {
-    console.time(eventMainSearch);
+    //console.time(eventMainSearch);
 
     eventMainSearch();
 
-    console.timeEnd(eventMainSearch);
+    //console.timeEnd(eventMainSearch);
 });
 
 BtnMainSearch.addEventListener('keydown', (e) => {
