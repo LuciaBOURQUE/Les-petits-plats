@@ -1,4 +1,4 @@
-/* 1er VERSION - Méthode boucle native (FOR) */
+/* VERSION RETENUE - Méthode boucle native (FOR) */
 function eventMainSearch() {
     const arrayInputRecipe = [];
     let researchMonitor = document.getElementById('search').value;
