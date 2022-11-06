@@ -30,9 +30,8 @@
     outline: none !important;
 }
 
-.error-message {
-    color: #ED6454;
-    display: block;
-    opacity: 0;
+.error-message-letter, .error-message-recipe {
+    color: $colorlogo;
+    display: none;
     transition: 0.3s;
 }
