@@ -82,7 +82,6 @@ btnModalElement.forEach((btn) => {
 
 
 // 3) Filtrage des recettes par leur tag
-// A REVOIR
 function FilterTagsSelection() {
     const researchIngredientTag = document.getElementById('ingredients');
     const researchAppareilsTag = document.getElementById('appareils');
