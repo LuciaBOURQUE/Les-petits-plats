@@ -10,6 +10,7 @@
         document.querySelector(".error-message-recipe").style.display = "block";
     } else {
         arrayInputRecipe.forEach((recipe) => {
+            document.querySelector(".error-message-recipe").style.display = "none";
             const cardRecipeModel = factoryCardRecipe(recipe);
             const recipeCardDOM = cardRecipeModel.getCardRecipeDOM();
             cardRecipeSection.appendChild(recipeCardDOM);
