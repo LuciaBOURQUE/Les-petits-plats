@@ -42,7 +42,7 @@ manageElementsListOnTag (recipes);
 const btnModalElement = document.querySelectorAll(".btn-dropdown");
 btnModalElement.forEach((btn) => {
     btn.addEventListener('click', (e) => {
-        if (e.target.getAttribute('dropdown') == 'ingredients') {
+        if (e.target.classList.contains("ingredients-dropdown")) {
             const modalbg = document.querySelector(".ingredients-tab");
             const ingredientPlaceholder = document.getElementsByName("ingredient");
             ingredientPlaceholder[0].placeholder = "Rechercher un ingrédient";
@@ -54,7 +54,7 @@ btnModalElement.forEach((btn) => {
                 ingredientPlaceholder[0].placeholder = "Ingrédients";
             }
 
-        } else if (e.target.getAttribute('dropdown') == 'appareils') {
+        } else if (e.target.classList.contains("appliances-dropdown")) {
             const modalbg = document.querySelector(".appliances-tab");
             const appareilsPlaceholder = document.getElementsByName("appareils");
             appareilsPlaceholder[0].placeholder = "Rechercher un appareil";
@@ -66,7 +66,7 @@ btnModalElement.forEach((btn) => {
                 appareilsPlaceholder[0].placeholder = "Appareils";
             }
 
-        } else if (e.target.getAttribute('dropdown') == 'ustensils') {
+        } else if (e.target.classList.contains("ustensils-dropdown")) {
             const modalbg = document.querySelector(".ustensils-tab");
             const ustensilsPlaceholder = document.getElementsByName("ustensiles");
             ustensilsPlaceholder[0].placeholder = "Rechercher un ustensil";
