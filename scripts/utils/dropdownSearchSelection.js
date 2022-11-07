@@ -54,7 +54,7 @@ btnModalElement.forEach((btn) => {
                 ingredientPlaceholder[0].placeholder = "Ingrédients";
             }
 
-        } else if (e.target.classList.contains("appliances-dropdown")) {
+        } else if (e.target.classList.contains("appareils-dropdown")) {
             const modalbg = document.querySelector(".appliances-tab");
             const appareilsPlaceholder = document.getElementsByName("appareils");
             appareilsPlaceholder[0].placeholder = "Rechercher un appareil";
