@@ -2,7 +2,7 @@
 
 /* Fonction affichage des cartes de recettes
    avec appel de la Factory "Card Recipe" */
-   function displayCardRecipe(arrayInputRecipe) {
+function displayCardRecipe(arrayInputRecipe) {
     const cardRecipeSection = document.querySelector(".section-grid-cards");
     cardRecipeSection.innerHTML= "";
 
