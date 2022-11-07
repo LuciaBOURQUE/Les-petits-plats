@@ -13,6 +13,12 @@ function eventMainSearch() {
 
         for (let i = 0; i<recipes.length; i++){
             let doublon = false;
+
+            let description = recipes[i].description;
+            if (description.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false ) {
+                arrayInputRecipe.push(recipes[i]);
+                doublon = true;
+            }
     
             let names = recipes[i].name;
             if (names.toLowerCase().includes(researchMonitor.toLowerCase()) && doublon == false ) {
