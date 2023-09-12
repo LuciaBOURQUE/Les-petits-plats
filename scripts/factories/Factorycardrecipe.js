@@ -1,10 +1,22 @@
-// FACTORY FUNCTION - CARD RECIPES
+// FACTORY FUNCTION
 
+/**
+ * Allows to create and display a recipe card
+ * @param {Object} data the data is the recipe informations
+ * @param {number} data.id recipe's data
+ * @param {string} data.image recipe's data
+ * @param {string} data.name recipe's name
+ * @param {Array<{ingredient: String, quantity: Number, unit: String}>} data.ingredients recipe's ingredients
+ * @param {number} data.time recipe's time
+ * @param {string} data.description recipe's description
+ * @param {string} data.appliance recipe's appliance
+ * @returns display of the card recipe with data
+ */
 function factoryCardRecipe (data) {
-    const { id, name, time, description } = data
-    const picture = `assets/pictures/Coconut_chicken_Reunion.jpeg`
+    const { id, image, name, time, description } = data
+    const picture = `assets/pictures/${image}`
 
-    // Create a card recipe
+    // Create a card recipe to the DOM
     function getCardRecipeDOM() {
         const card = document.createElement('article');
         card.classList.add('cards-recipe');
@@ -29,14 +41,10 @@ function factoryCardRecipe (data) {
                             <div class="recipe-ingredients-text">
                             <div class="ingredients-tab-item">`
         
-
         data.ingredients.forEach(ingredient => {
             let ingredientName = `${ingredient.ingredient}`;
             let quantityName = `${ingredient.quantity}`;
-            if (quantityName === `${undefined}`){
-                quantityName = "";
-            }
-            cardHTML += `<p class="ingredient"><span class="ingredient-bold">${ingredientName}:</span> ${quantityName}</p>`
+            quantityName === `${undefined}` ? "" : cardHTML += `<p class="ingredient"><span class="ingredient-bold">${ingredientName} :</span> ${quantityName}</p>`
         });
 
         cardHTML += `      </div>  

@@ -4,18 +4,20 @@
     margin-top: 3%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 50px;
+    gap: 40px 60px;
 }
 
-
 .cards-recipe {
+    cursor: pointer;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
-    background-color: $colorsearchinput;
+    background-color: white;
+    border: 1px solid #E7E7E7;
+    transition: transform 0.5s;
     img {
-        border-radius: 5px 5px 0 0;
+        border-radius: 20px 20px 0 0;
         width: 100%;
         height: 200px;
         overflow: hidden;
@@ -27,6 +29,14 @@
 
     }
 }
+
+.cards-recipe:hover {
+    border: 1px solid transparent;
+    box-shadow: -9px 10px 10px #3636361a;
+    transform: scale(1.02);
+    transition: 0.5s;
+}
+
 .hide {
     display: none;
 }
@@ -53,12 +63,12 @@
     display: flex;
     justify-content: space-between;
     .recipe-text {
-        height: 80px;
-        text-overflow: ellipsis;
+        height: 110px;
         white-space: normal;
         overflow: hidden;
+        text-overflow: ellipsis;
         width: 70%;
-        margin: 0;
+        margin: 0 0 0 15px;
     }
 }
 

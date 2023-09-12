@@ -1,5 +1,3 @@
-/* Dynamique au niveau des Dropdown Search" */
-
 // 1) Création des tableaux pour les modales au niveau des tags
 function manageElementsListOnTag (currentsRecipes) {
     //Partie 1 - Créer les tableaux à remplir
