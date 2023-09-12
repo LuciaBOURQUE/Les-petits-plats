@@ -97,10 +97,6 @@ header h1 {
   opacity: 0.5;
 }
 
-.text-search:-ms-input-placeholder {
-  opacity: 0.5;
-}
-
 .text-search::placeholder {
   opacity: 0.5;
 }
@@ -166,9 +162,6 @@ header h1 {
   color: #FFFFFF;
 }
 .tag-input .text-tag::-moz-placeholder {
-  color: #FFFFFF;
-}
-.tag-input .text-tag:-ms-input-placeholder {
   color: #FFFFFF;
 }
 .tag-input .text-tag::placeholder {
