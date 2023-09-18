@@ -225,11 +225,11 @@ header h1 {
   display: none;
 }
 
-/* SECTION 3 - Grille des cartes de recette */
 .section-grid-cards {
   margin-top: 3%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
+  grid-template-columns: repeat(auto-fill, 30%);
   gap: 40px 60px;
 }
 
@@ -302,4 +302,15 @@ header h1 {
 }
 .ingredient .ingredient-bold {
   font-weight: 600;
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1250px) {
+  .section-grid-cards {
+    grid-template-columns: repeat(auto-fill, 45%);
+  }
+}
+@media only screen and (max-width: 550px) {
+  .section-grid-cards {
+    grid-template-columns: repeat(auto-fill, 100%);
+  }
 }/*# sourceMappingURL=style.css.map */
